@@ -1,0 +1,57 @@
+﻿@page
+@using Consulting_Company.Model
+@model Consult_Company.Pages.Projekter.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Project</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Project.Name" class="control-label"></label>
+                <input asp-for="Project.Name" class="form-control" />
+                <span asp-validation-for="Project.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Project.Description" class="control-label"></label>
+                <input asp-for="Project.Description" class="form-control" />
+                <span asp-validation-for="Project.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Project.IdTask" class="control-label"></label>
+                <select asp-for="Project.IdTask" class="form-control" asp-items="Model.Options"><option selected="selected" value="">Please select</option></select>
+                  <span asp-validation-for="Project.IdTask" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Project.UserId" class="control-label"></label>
+                <select asp-for="Project.UserId" class="form-control" asp-items="Model.Options2"><option selected="selected" value="">Please select</option></select>
+                <span asp-validation-for="Project.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Project.Status" class="control-label"></label>
+                <select asp-for="Project.Status" class="form-control" asp-items="@Html.GetEnumSelectList<Project.status>()">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="Project.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,70 @@
+﻿@page
+@model Consult_Company.Pages.Projekter.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].IdTask)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].Task.Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project[0].Status)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Project) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Task.Name)
+            </td>
+            <td>@Html.DisplayFor(modelItem => item.IdentUser.UserName)
+                    @*@{                        
+                        var fullName = item.IdentUser.firstName + " " + item.IdentUser.lastName;
+                    @Html.DisplayFor(m=>fullName)
+                }*@
+            </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.Task.Priority)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.IdProject">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdProject">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdProject">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
